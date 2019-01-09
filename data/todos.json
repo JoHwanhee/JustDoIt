@@ -1,0 +1,39 @@
+{
+    "updated": "201901100107",
+    "todos": [
+        {
+            "categoryNumber": "0001",
+            "category": "Python 공부하기",
+            "memos":
+                [
+                     {
+                        "memoNumber": "0001",
+                        "memo": "파이썬 문법 공부하기",
+                        "done": false
+                     },
+                     {
+                        "memoNumber": "0002",
+                        "memo": "파이썬 Bottle Lib 공부하기",
+                        "done": false
+                     }
+                ]
+        },
+        {
+            "categoryNumber": "0002",
+            "category": "운동",
+            "memos":
+                [
+                     {
+                        "memoNumber": "0001",
+                        "memo": "물 1리터 마시기",
+                        "done": false
+                     },
+                     {
+                        "memoNumber": "0002",
+                        "memo": "줄넘기 100회",
+                        "done": false
+                     }
+                ]
+        }
+    ]
+}
