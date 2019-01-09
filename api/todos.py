@@ -1,21 +1,18 @@
 from bottle import Bottle, response
-from api import utils
+from api import restUtils
+from data.TotoManager import TodoManager
 import json
 
 todoApi = Bottle()
-
-_file_directory = 'F:\\JustDoIt\\data\\todos.json'
-_json_data = open(_file_directory, encoding='UTF8').read()
+_json_data = TodoManager().json
 
 
 @todoApi.get("/todos")
 def listing_handler():
     jsonString = json.loads(_json_data)
 
-    response.set_header("Content-Type", "application/json; charset=utf-8")
-    response.set_header("Cache-Control", "no-cache")
-
-    utils.set_access_control(response)
+    restUtils.set_header_json(response)
+    restUtils.set_access_control(response)
 
     return jsonString
 
