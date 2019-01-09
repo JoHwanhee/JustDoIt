@@ -5,6 +5,7 @@
     <title>Jut Do It !!!!</title>
     <script src="./static/js/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 <body>
@@ -13,12 +14,12 @@
           <h1> {{ message }} </h1>
           <input
               v-model="newTodoText"
-              v-on:keyup.enter="addNewTodo"
+              v-on:keyup.enter="addNewTodo(newTodoText)"
               placeholder="Add a todo"
             >
           <ul id="app">
             <li v-for="(item, index) in totos">
-              {{ item.memoNumber }} - {{ item.memo }} {{ item.done }} <button v-on:click="remove()">X</button>
+              {{ index }} - {{ item.memo }} {{ item.done }} <button v-on:click="remove(index)">X</button>
             </li>
           </ul>
 
@@ -33,23 +34,42 @@
       },
       methods: {
         getData: function() {
-              var link = 'http://localhost:8000/todos';
-              this.$http.get(link).then(function(response) {
-                this.totos = response.data["todos"];
-              }, function(error) {
-                console.log(error.statusText);
-              });
+              var link = 'http://127.0.0.1:8000/todos';
+              axios
+                .get(link)
+                .then(response => {
+                    this.totos = response.data["todos"];
+                })
+                .catch(e => {
+                      this.errors.push(e)
+                })
         },
         addNewTodo: function () {
-           var link = 'http://localhost:8000/todos';
-           this.todos.push({
-             id: this.nextTodoId++,
-             title: this.newTodoText
-           })
+           var link = 'http://127.0.0.1:8000/todos';
+           axios
+            .post(link, {
+            	body: this.newTodoText
+            })
+            .then(res => {
+            	console.log(res.data)
+            })
+            .catch(e => {
+                  this.errors.push(e)
+            })
+
            this.newTodoText = ''
+           this.getData()
         },
-        remove: function () {
-          alert()
+        remove: function (index) {
+          var link = 'http://127.0.0.1:8000/todos/'+index;
+          axios
+           .delete(link)
+           .then(res => {
+             console.log(res.data)
+           })
+           .catch(e => {
+                 this.errors.push(e)
+           })
         }
       },
       mounted: function() {

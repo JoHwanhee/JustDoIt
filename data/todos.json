@@ -3,12 +3,10 @@
     "todos": [
 
                      {
-                        "memoNumber": "0001",
                         "memo": "파이썬 문법 공부하기",
                         "done": false
                      },
                      {
-                        "memoNumber": "0002",
                         "memo": "파이썬 Bottle Lib 공부하기",
                         "done": false
                      }
