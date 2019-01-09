@@ -3,8 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Jut Do It !!!!</title>
+    <script src="./static/js/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
 </head>
 <body>
+    <div id="app">
 
+          <h1> {{ message }} </h1>
+          <input
+              v-model="newTodoText"
+              v-on:keyup.enter="addNewTodo"
+              placeholder="Add a todo"
+            >
+          <ul id="app">
+            <li v-for="(item, index) in totos">
+              {{ item.memoNumber }} - {{ item.memo }} {{ item.done }} <button v-on:click="remove()">X</button>
+            </li>
+          </ul>
+
+    </div>
+    <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        newTodoText: '',
+        message: 'Todo List App',
+        totos: []
+      },
+      methods: {
+        getData: function() {
+              var link = 'http://localhost:8000/todos';
+              this.$http.get(link).then(function(response) {
+                this.totos = response.data["todos"];
+              }, function(error) {
+                console.log(error.statusText);
+              });
+        },
+        addNewTodo: function () {
+           var link = 'http://localhost:8000/todos';
+           this.todos.push({
+             id: this.nextTodoId++,
+             title: this.newTodoText
+           })
+           this.newTodoText = ''
+        },
+        remove: function () {
+          alert()
+        }
+      },
+      mounted: function() {
+        this.getData();
+      }
+    })
+  </script>
 </body>
 </html>
