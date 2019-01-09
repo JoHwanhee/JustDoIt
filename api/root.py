@@ -5,5 +5,5 @@ rootApi = Bottle()
 
 @rootApi.route('/')
 def root():
-    return 'hello world!!!!!!!!'
+    return static_file('index.html', root='./')
 
