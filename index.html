@@ -19,7 +19,13 @@
             >
           <ul id="app">
             <li v-for="(item, index) in totos">
-              {{ index }} - {{ item.memo }} {{ item.done }} <button v-on:click="remove(index)">X</button>
+              <div v-if=item.done>
+                <s> {{ item.memo }}</s> <button v-on:click="remove(index)">X</button>
+              </div>
+              <div v-else>
+               {{ item.memo }} <button v-on:click="remove(index)">X</button>
+              </div>
+
             </li>
           </ul>
 
