@@ -1,6 +1,6 @@
 from bottle import Bottle, response
 from api import restUtils
-from data.TotoManager import TodoManager
+from data.TodoManager import TodoManager
 import json
 
 todoApi = Bottle()
