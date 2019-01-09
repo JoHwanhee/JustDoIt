@@ -17,32 +17,17 @@ def listing_handler():
     return jsonString
 
 
-@todoApi.post("/todos/categories")
-def create_category():
+@todoApi.post("/todos")
+def create_todo():
     pass
 
 
-@todoApi.post("/todos/<categoryNumber>/memos/<memoNumber>")
-def create_memo():
+@todoApi.put("/todos/<memoNumber>")
+def update_todo(number):
     pass
 
 
-@todoApi.put("/todos/<categoryNumber>")
-def update_category(number):
-    pass
-
-
-@todoApi.put("/todos/<categoryNumber>/memos/<memoNumber>")
-def update_memo(memoNumber):
-    pass
-
-
-@todoApi.delete("/todos/<categoryNumber>")
-def delete_category(number):
-    pass
-
-
-@todoApi.delete("/todos/<categoryNumber>/memos/<memoNumber>")
-def delete_memo(memoNumber):
+@todoApi.delete("/todos/<memoNumber>")
+def delete_todo(number):
     pass
 
