@@ -10,25 +10,19 @@
 </head>
 <body>
     <div id="app">
-
           <h1> {{ message }} </h1>
-          <input
-              v-model="newTodoText"
-              v-on:keyup.enter="addNewTodo(newTodoText)"
-              placeholder="Add a todo"
-            >
-          <ul id="app">
-            <li v-for="(item, index) in totos">
-              <div v-if=item.done>
-                <s> {{ item.memo }}</s> <button v-on:click="remove(index)">X</button>
-              </div>
-              <div v-else>
-               {{ item.memo }} <button v-on:click="remove(index)">X</button>
-              </div>
+            <div v-for="category in categories">
+              <b> 카테고리 : {{category['category']}}</b>
 
-            </li>
-          </ul>
-
+              <div v-for="memo in category['memoList']">
+                <div v-if="memo['done']">
+                  <s>{{memo['memo']}}</s>
+                </div>
+                <div v-else>
+                  {{memo['memo']}}
+                </div>
+              </div>
+            </div>
     </div>
     <script>
     var app = new Vue({
@@ -36,7 +30,7 @@
       data: {
         newTodoText: '',
         message: 'Todo List App',
-        totos: []
+        categories: []
       },
       methods: {
         getData: function() {
@@ -44,7 +38,7 @@
               axios
                 .get(link)
                 .then(response => {
-                    this.totos = response.data["todos"];
+                    this.categories = response.data['categories'];
                 })
                 .catch(e => {
                       this.errors.push(e)

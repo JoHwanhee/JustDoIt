@@ -1,5 +1,4 @@
 from bottle import Bottle, response, request
-from api import restUtils
 from data.TodoManager import TodoManager
 import json
 
@@ -9,12 +8,14 @@ _allow_origin = "*"
 _allow_methods = "PUT, GET, POST, DELETE, OPTIONS"
 _allow_headers = "Authorization, Origin, Accept, Content-Type, X-Requested-With"
 
+
 def set_response():
     response.set_header("Content-Type", "application/json; charset=utf-8")
     response.set_header("Cache-Control", "no-cache")
     response.set_header("Access-Control-Allow-Origin", _allow_origin)
     response.set_header("Access-Control-Allow-Methods", _allow_methods)
     response.set_header("Access-Control-Allow-Headers", _allow_headers)
+
 
 @todoApi.get("/todos")
 def listing_handler():
@@ -25,13 +26,16 @@ def listing_handler():
     return json_string
 
 
-@todoApi.post("/todos")
+@todoApi.post("/todos/categories")
 def create_todo():
-    data = json.load(request.body)['body']
 
-    print(data)
+    set_response()
 
-    _manager.add_todo(data)
+    return "ok"
+
+
+@todoApi.post("/todos/categories/<category>")
+def create_todo(category):
 
     set_response()
 

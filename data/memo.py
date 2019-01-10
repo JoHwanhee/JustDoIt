@@ -1,5 +1,5 @@
 import json
-from ..utils.jsonUtils import JsonUtils
+from utils.jsonUtils import JsonUtils
 
 
 class Memo:
@@ -10,7 +10,7 @@ class Memo:
 
     def to_json(self):
         json_object = {
-           "memo": self.memo,
+            "memo": self.memo,
             "id": self.id,
             "done": self.done
         }
