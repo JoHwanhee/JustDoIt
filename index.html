@@ -34,7 +34,7 @@
       },
       methods: {
         getData: function() {
-              var link = 'http://127.0.0.1:8000/todos';
+              var link = 'http://127.0.0.1:8000/todo';
               axios
                 .get(link)
                 .then(response => {
@@ -45,7 +45,7 @@
                 })
         },
         addNewTodo: function () {
-           var link = 'http://127.0.0.1:8000/todos';
+           var link = 'http://127.0.0.1:8000/todo';
            axios
             .post(link, {
             	body: this.newTodoText
@@ -61,7 +61,7 @@
            this.getData()
         },
         remove: function (index) {
-          var link = 'http://127.0.0.1:8000/todos/'+index;
+          var link = 'http://127.0.0.1:8000/todo/'+index;
           axios
            .delete(link)
            .then(res => {

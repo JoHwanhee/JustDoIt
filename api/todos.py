@@ -9,6 +9,7 @@ _allow_methods = "PUT, GET, POST, DELETE, OPTIONS"
 _allow_headers = "Authorization, Origin, Accept, Content-Type, X-Requested-With"
 
 
+
 def set_response():
     response.set_header("Content-Type", "application/json; charset=utf-8")
     response.set_header("Cache-Control", "no-cache")
@@ -17,7 +18,7 @@ def set_response():
     response.set_header("Access-Control-Allow-Headers", _allow_headers)
 
 
-@todoApi.get("/todos")
+@todoApi.get("/todo")
 def listing_handler():
     json_string = _manager.get_todo()
 
@@ -26,7 +27,7 @@ def listing_handler():
     return json_string
 
 
-@todoApi.post("/todos/categories")
+@todoApi.post("/todo/categories")
 def create_todo():
 
     set_response()
@@ -34,7 +35,7 @@ def create_todo():
     return "ok"
 
 
-@todoApi.post("/todos/categories/<category>")
+@todoApi.post("/todo/categories/<category>")
 def create_todo(category):
 
     set_response()
@@ -42,12 +43,12 @@ def create_todo(category):
     return "ok"
 
 
-@todoApi.put("/todos/<memoNumber>")
+@todoApi.put("/todo/<memoNumber>")
 def update_todo(number):
     pass
 
 
-@todoApi.delete("/todos/<memoNumber>")
+@todoApi.delete("/todo/<memoNumber>")
 def delete_todo(memoNumber):
     _manager.remove_todo(memoNumber)
     set_response()
