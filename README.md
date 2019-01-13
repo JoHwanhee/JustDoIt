@@ -1,2 +1,2 @@
 # JustDoIt
-Todo List App
+Todo List App like Trello
